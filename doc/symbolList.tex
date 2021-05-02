@@ -1,0 +1,296 @@
+\documentclass{article}
+\usepackage{mymacro}
+\usepackage{longtable,booktabs}
+\usepackage[a4paper, margin=.7in]{geometry}
+\usepackage{blindtext}
+
+\def\tbs{\textbackslash}
+
+\begin{document}
+
+\section{Symbols}
+
+Mainly based on physics package
+
+\begin{center}
+\begin{table}[htp]
+    \begin{tabular}{|p{3cm}||l|l|p{6cm}|}
+    \toprule
+    Macro                     & Usage                            & Effect                   & Comments \\
+    \midrule \midrule
+    \tbs quantity             & \tbs qty(\tbs frac\{b\}\{a\})    & $\qty(\frac{b}{a})$      & Automatic bracing: (), [], \{\}, $\vert\vert$
+    \\ \hline
+                              & \tbs pqty\{a\}                   & $\pqty{a}$               & \tbs pqty: (); \tbs bqty: []; \tbs vqty: $\abs{}$; \tbs Bqty: \{\}
+    \\ \hline \hline
+    \textbf{Bracing}          &                                  &                          & * for no resize, manual bracing: \tbs big, \tbs Big, \tbs bigg, \tbs Bigg
+    \\ \hline
+    \tbs absolutevalue        & \tbs abs\{a\}                    & $\abs{a}$                & Absoluevalue
+    \\ \hline
+    \tbs norm                 & \tbs norm\{a\}                   & $\norm{a}$               & Norm
+    \\ \hline
+    \tbs opnorm               & \tbs opnorm\{a\}                 & $\opnorm{a}$             & Operator norm
+    \\ \hline
+    \tbs evaluated            & \tbs eval\{a\}\_0\^{}1           & $\eval{a}_0^1$           & Evaluation, also \tbs eval(a$\vert$ \_0\^{}1; \tbs eval[a$\vert$ \_0\^{}1
+    \\ \hline
+    \tbs order                & \tbs order\{a\}                  & $\order{a}$              & Order
+    \\ \hline
+    \tbs commutator           & \tbs comm\{a\}\{b\}              & $\comm{a}{b}$            & Commutator
+    \\ \hline
+    \tbs anticommutator       & \tbs acomm\{a\}\{b\}             & $\acomm{a}{b}$           & Anti-commutator
+    \\ \hline
+    \tbs poissonbracket       & \tbs pb\{a\}\{b\}                & $\pb{a}{b}$              & Poison bracket
+    \\ \hline \hline
+    \end{tabular}
+    \begin{tabular}{|p{3cm}||l|l|p{6cm}|}
+    \toprule
+    \textbf{Vector}           &                                  &                          &
+    \\ \hline
+    \tbs vectorbold           & \tbs vb\{a\}                     & $\vb{a}$                 & Vector as bold (no Greek), * for italic and Greek
+    \\ \hline
+    \tbs vectorarrow          & \tbs va\{a\}                     & $\va{a}$                 & Vector with arrow (no Greek), * for italic and Greek
+    \\ \hline
+    \tbs vectorunit           & \tbs vu\{a\}                     & $\vu{a}$                 & With hat (no Greek), * for italic and Greek
+    \\ \hline
+    \tbs dotproduct           & \tbs vdot                        & $\vdot$                  & Dot product (bold cdot)
+    \\ \hline
+    \tbs crossproduct         & \tbs cross                       & $\cross$                 & or \tbs cp
+    \\ \hline
+    \tbs gradient             & \tbs grad\{a\}                   & $\grad{a}$               & Also valid for (), []. with \textit{arrowdel} command, it's changed to vector mode
+    \\ \hline
+    \tbs divergence           & \tbs div\{a\}                    & $\div{a}$                & Also valid for (), [].
+    \\ \hline
+    \tbs laplacian            & \tbs laplacian\{a\}              & $\laplacian{a}$          & Also valid for (), [].
+    \\ \hline \hline
+    \end{tabular}
+\end{table}
+\end{center}
+\begin{longtable}{l||l|l|p{6cm}}
+\textbf{Derivatives}      &                                  &                          &
+\\ \hline
+\tbs differential         & \tbs dd\{a\}                     & $\dd{a}$                 & Differential symbol; also valid for ()
+\\ \hline
+                          & \tbs dd[3]\{a\}                  & $\dd[3]{a}$              & Power
+\\ \hline
+\tbs variation            & \tbs var[3]\{a\}                 & $\var[3]{a}$             & Variation of functional; works as \tbs dd.
+\\ \hline
+\tbs derivative           & \tbs dv[2]\{a\}                  & $\dv[2]{a}$              & Derivative, powers available with []
+\\ \hline
+                          & \tbs dv\{f\}\{a\}                & $\dv{f}{a}$              & Two arguments
+\\ \hline
+                          & \tbs dv\{a\}(f)                  & $\dv{a}(f)$              & Low form
+\\ \hline
+                          & \tbs dv*\{f\}\{a\}               & $\dv*{f}{a}$             & Inline form
+\\ \hline
+\tbs partialderivative    & \tbs pdv\{f\}\{a\}               & $\pdv{f}{a}$             & Partial derivative. same to \tbs dv.
+\\ \hline
+                          & \tbs pdv\{f\}\{x\}\{y\}          & $\pdv{f}{x}{y}$          & Can take two variables
+\\ \hline
+\tbs functionalderivative & \tbs fdv\{F\}\{g\}               & $\fdv{F}{g}$             & Functional derivative; works as \tbs dv
+\\ \hline \hline
+\textbf{Dirac notation}   &                                  &                          & * for no resize
+\\ \hline
+\tbs ket                  & \tbs ket\{a\}                    & $\ket{a}$                & Ket
+\\ \hline
+\tbs bra                  & \tbs bra\{a\}                    & $\bra{a}$                & Bra
+\\ \hline
+                          & \tbs bra\{a\}\tbs ket\{b\}       & $\bra{a}\ket{b}$         & Auto contraction
+\\ \hline
+\tbs innerproduct         & \tbs braket\{a\}\{b\}            & $\braket{a}{b}$          & Braket. Also \tbs ip
+\\ \hline
+                          & \tbs braket\{a\}                 & $\braket{a}$             & Norm
+\\ \hline
+\tbs outerproduct         & \tbs ketbra\{a\}\{b\}            & $\ketbra{a}{b}$          & Outer, also \tbs op or \tbs dyad
+\\ \hline
+\tbs expectationvalue     & \tbs expval\{A\}                 & $\expval{A}$             & Expectation value (implicit), also \tbs ev. (Resize doesn't include A, ** to include)
+\\ \hline
+                          & \tbs expval\{A\}\{n\}            & $\expval{A}{n}$          & Expectation value (explicit)
+\\ \hline
+\tbs matrixelement        & \tbs mel\{n\}\{A\}\{m\}          & $\mel{n}{A}{m}$          & Matrix element, also \tbs matrixel. (Resize doesn't include A, ** to include)
+\\ \hline \hline
+\textbf{Matrix}           &                                  &                          &
+\\ \hline
+\tbs matrixquantity       & \tbs mqty\{a\& b\tbs \tbs c\& d\}& $\begin{matrix}\mqty{a&b\\c&d}\end{matrix}$        & Matrix, can be grouped as elements in larger matrix. Also works with (), *(), [], $\norm{}$. \tbs pmqty: (); \tbs Pmqty:* (); \tbs bmqty: []; \tbs vmqty: $\norm{}$
+\\ \hline
+\tbs smallmatrixquantity  & \tbs smqty\{a\& b\tbs \tbs c\& d\}& $\begin{matrix}\smqty{a&b\\c&d}\end{matrix}$       & Small matrix, same as above
+\\ \hline
+\tbs matrixdeterminant    & \tbs mdet\{a\}                   & $\begin{matrix}\mdet{a}\end{matrix}$               & Determinant;
+\\ \hline
+                          & \tbs smdet\{a\}                  & $\begin{matrix}\smdet{a}\end{matrix}$              & Determinant, small version
+\\ \hline
+\tbs identitymatrix       & \tbs imat\{3\}                   & $\begin{matrix}\smqty(\imat{3})\end{matrix}$       & Identity Matrix
+\\ \hline
+\tbs xmatrix              & \tbs xmat\{x\}\{2\}\{3\}         & $\begin{matrix}\smqty{\xmat{x}{2}{3}}\end{matrix}$  & Matrix filled with $x$
+\\ \hline
+                          & \tbs xmat*\{a\}\{2\}\{3\}        & $\begin{matrix}\smqty{\xmat*{x}{2}{3}}\end{matrix}$ & * assign indices to elements
+\\ \hline
+\tbs zeromatrix           & \tbs zmat\{2\}\{3\}              & $\begin{matrix}\smqty{\zmat{2}{3}}\end{matrix}$    & Zero matrix
+\\ \hline
+\tbs paulimatrix          & \tbs pmat\{1\}                   & $\begin{matrix}\smqty{\pmat{1}}\end{matrix}$       & Pauli [0, 1, 2, 3] matrix
+\\ \hline
+\tbs diagonalmatrix       & \tbs dmat\{a, b\}                & $\begin{matrix}\smqty{\dmat{a,b}}\end{matrix}$     & Diagonal matrix, up to 8 elements, add [0] option to fill with 0. matrix can be inputted as entries as well.
+\\ \hline
+\tbs antidiagonalmatrix   & \tbs admat\{a,b\}                & $\begin{matrix}\smqty{\admat{a,b}}\end{matrix}$    & Anti-diagonal matrix, as above.
+\\ \hline \hline
+\textbf{Text in math mode}&                                  &                           & Insert text in math mode, including spacing. Special macros see table~\ref{tab:text}.
+\\ \hline
+\tbs qqtext               & 1 \tbs qq\{word\} 2              & $1\qq{word}2$             & with *, only include spacing at the end.
+\end{longtable}
+
+\begin{table}[hpb]
+    \caption{Text in math mode}\label{tab:text}
+    \centering
+    \begin{tabular}{llll}
+    \tbs qcc & \tbs qif & \tbs qthen & \tbs qotherwise \\
+    \tbs qunless & \tbs qgiven & \tbs qusing & \tbs qassume \\
+    \tbs qsince & \tbs qlet & \tbs qfor & \tbs qall \\
+    \tbs qeven & \tbs qinteger & \tbs qand & \tbs qor \\
+    \tbs qas & \tbs qin
+    \end{tabular}
+    \begin{tabular}{|llll}
+    $1\qcc1$ & $1\qif1$ & $1\qthen1$ & $1\qotherwise1$ \\
+    $1\qunless1$ & $1\qgiven1$ & $1\qusing1$ & $1\qassume1$ \\
+    $1\qsince1$ & $1\qlet1$ & $1\qfor1$ & $1\qall1$ \\
+    $1\qeven1$ & $1\qinteger1$ & $1\qand1$ & $1\qor1$ \\
+    $1\qas1$ & $1\qin1$
+    \end{tabular}
+\end{table}
+
+Other special functions:
+
+The functions in Tab.~\ref{tab:func} can be used as \tbs sin[2](x):
+$\sin[2](x)$, which handles the sizing and powers.
+\begin{table}[hpb]
+    \caption{Functions}\label{tab:func}
+\centering
+\begin{tabular}{llll}
+\tbs sin & \tbs sinh & \tbs arcsin & \tbs asin \\
+\tbs cos & \tbs cosh & \tbs arccos & \tbs acos \\
+\tbs tan & \tbs tanh & \tbs arctan & \tbs atan \\
+\tbs csc & \tbs csch & \tbs arccsc & \tbs acsc \\
+\tbs sec & \tbs sech & \tbs arcsec & \tbs asec \\
+\tbs cot & \tbs coth & \tbs arccot & \tbs acot \\
+\tbs log & \tbs ln
+\end{tabular}
+\begin{tabular}{|llll}
+$\sin$ & $\sinh$ & $\arcsin$ & $\asin$ \\
+$\cos$ & $\cosh$ & $\arccos$ & $\acos$ \\
+$\tan$ & $\tanh$ & $\arctan$ & $\atan$ \\
+$\csc$ & $\csch$ & $\arccsc$ & $\acsc$ \\
+$\sec$ & $\sech$ & $\arcsec$ & $\asec$ \\
+$\cot$ & $\coth$ & $\arccot$ & $\acot$ \\
+$\log$ &$ \ln$
+\end{tabular}
+\end{table}
+
+The functions in Tab.~\ref{tab:limit} can be used as \tbs max[2]\{x\}:
+$\max[2]{x}$, which handles the sizing and subscript (traditional typeset \tbs
+max\_2 is still available).
+In display mode, it is
+$$\max[2]{x}$$
+\begin{table}[htp]
+    \caption{Limits}\label{tab:limit}
+\centering
+\begin{tabular}{lll}
+\tbs max & \tbs min & \tbs lim \\
+\tbs sup & \tbs inf & \tbs argmin \\
+\tbs argmax
+\end{tabular}
+\begin{tabular}{|lll}
+$\max$ & $\min$ & $\lim$ \\
+$\sup$ & $\inf$ & $\argmin$ \\
+$\argmax$
+\end{tabular}
+\end{table}
+
+\pagebreak
+The functions in Tab.~\ref{tab:ftext} can be used with automatic sizing of [],
+(), and \{\}:
+\begin{table}[htp]
+    \caption{Function as text}\label{tab:ftext}
+\centering
+\begin{tabular}{lll}
+\tbs exp    & \tbs det  & \tbs Pr \\
+\tbs tr     & \tbs Tr   & \tbs Res\\
+\end{tabular}
+\begin{tabular}{|lll}
+$\exp$      & $\det $   & $\Pr$     \\
+$\tr$       & $\Tr$     & $\Res$    \\
+\end{tabular}
+\end{table}
+
+Following functions can be used with conditions:
+\begin{table}[htp]
+    \caption{Conditional}\label{tab:cond}
+\centering
+\begin{tabular}{lll}
+\tbs ave[a]\{b\}\{c\} & \tbs prob\{a\}\{b\} \\
+\tbs entro\{a\}\{b\}  & \tbs KLdiv\{a\}\{b\}\\
+\end{tabular}
+\begin{tabular}{|lll}
+$\displaystyle\ave[a]{b}{c}$  & $\prob{a}{b} $ \\
+$\entro{a}{b} $               & $\KLdiv{a}{b} $\\
+\end{tabular}
+\end{table}
+
+Following functions are provided as plain text:
+\begin{table}[hpb]
+\centering
+\begin{tabular}{lll}
+\tbs rank & \tbs erf & \tbs ker \\
+\tbs deg  & \tbs gcd & \tbs hom
+\end{tabular}
+\begin{tabular}{|lll}
+$\rank$ & $\erf$ & $\ker$ \\
+$\deg$ & $\gcd$ & $\hom$
+\end{tabular}
+\end{table}
+
+The following symbols are defined\linebreak[0]
+\begin{table}[!hpb]
+    \caption{Symbols}\label{tab:sym}
+\centering
+\begin{tabular}{llll}
+\tbs ell & \tbs binary & \tbs complex & \tbs integer \\
+\tbs real & \tbs natural & \tbs hilb  &
+\end{tabular}
+\begin{tabular}{|llll}
+$\ell$ & $\binary$ & $\complex$ & $\integer$\\
+$\real$ & $\natural$ & $\hilb$ &
+\end{tabular}
+\end{table}
+
+Also, some special operators are provided:
+
+\tbs principalvalue or \tbs pv\{f\}: $\pv{f}$, \tbs PV\{f\}: $\PV{f}$, \tbs Re:
+$\Re{z}$, \tbs Im: $\Im{z}$.
+
+\section{Marks and Colors}
+
+Several shortcut for colors are provided with the \emph{xcolor} package:
+
+\red{\tbs red}, \blue{\tbs blue}, \green{\tbs green}
+
+Also the hyperrefs are colored:
+
+\begin{enumerate}
+    \item In document ref: \hyperref[dummylabel]{dummy target}\label{dummylabel}
+    \item cite: \cite{dummy}
+    \item url: \url{www.dummyurl}
+\end{enumerate}
+
+The marks are provided by the \emph{soul} package
+\begin{enumerate}
+    \item \tbs so: \so{space out}
+    \item \tbs ul: \ul{underline} 
+    \item \tbs st: \st{striking out}
+    \item \tbs hl: \hl{highlight}
+\end{enumerate}
+
+\blindtext
+
+
+\begin{thebibliography}{1}
+    \bibitem{dummy} dummy citation
+\end{thebibliography}
+
+\end{document}

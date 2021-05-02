@@ -1,0 +1,158 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mymacro}[2019/9/30 Custom]
+
+% Options
+\DeclareOption{compatible}{\let\compatible = 1}
+\DeclareOption{ncompatible}{\let\compatible= 0}
+\ExecuteOptions{ncompatible}
+\ProcessOptions\relax
+
+\RequirePackage{graphicx}   % Includes figure files
+\RequirePackage{hyperref}   % Includes hyperref
+
+% Math
+% -------- Theorems --------
+    \RequirePackage{amsthm} % Theorem environment
+    % \RequirePackage{thmtools}
+        \theoremstyle{plain}
+        \newtheorem{theorem}{Theorem}
+        \newtheorem{lemma}[theorem]{Lemma}
+        \newtheorem{proposition}[theorem]{Proposition}
+        \newtheorem*{corollary}{Corollary}
+
+        \newtheorem{result}{Result}
+
+        \theoremstyle{definition}
+        \newtheorem{definition}{Definition}[section]
+        \newtheorem{conj}{Conjecture}[section]
+        \newtheorem{problem}{Problem}[section]
+        \newtheorem{example}[problem]{Example}
+        \newtheorem{property}{Property}[section]
+
+        \theoremstyle{remark}
+        \newtheorem*{remark}{Remark}
+        \newtheorem*{note}{Note}
+
+% Math mode symbols
+    \RequirePackage{amssymb}% Additional symbols
+    \RequirePackage{bm}% bold math
+    \if\compatible0
+        \RequirePackage[trig]{physics}
+    \else
+        \RequirePackage[notrig]{physics}
+    \fi
+    
+    % Change font on numbers
+        \DeclareMathAlphabet{\bboldbb}{U}{bbold}{m}{n}
+        \DeclareMathAlphabet{\boondoxbb}{U}{BOONDOX-ds}{m}{n}
+
+    % Shortcuts for symbols
+        \DeclareDocumentCommand\teststy{}{Test}
+        \ProvideDocumentCommand\binary{}{\mathbb{B}}
+        \ProvideDocumentCommand\complex{}{\mathbb{C}}
+        \let\realpart\real
+        \let\imagpart\imaginary
+            \DeclareDocumentCommand\real{}{\mathbb{R}}
+        \let\musicnatural\natural
+            \DeclareDocumentCommand\natural{}{\mathbb{N}}
+        \ProvideDocumentCommand\integer{}{\mathbb{Z}}
+        \ProvideDocumentCommand\hilb{}{\mathcal{H}}
+        
+        \ProvideDocumentCommand\id{}{\mathbb{I}}
+        \ProvideDocumentCommand\dephase{}{\mathcal{Z}}
+
+        \ProvideDocumentCommand\argmin{}{\arg\min}
+        \ProvideDocumentCommand\argmax{}{\arg\max}
+
+        \ProvideDocumentCommand\sgn{}{\operatorname{sgn}}
+
+        \ProvideDocumentCommand\trans{ m }{#1^\mathsf{T}}
+
+        \DeclareMathOperator*{\average}{\mathbb{E}}
+        \DeclareMathOperator{\probability}{\mathbb{P}}
+        \DeclareMathOperator{\entropy}{\operatorname{S}}
+        \DeclareMathOperator{\KLdivergence}{\mathcal{D}}
+
+        \ProvideDocumentCommand\one{}{\bboldbb{1}}
+        \ProvideDocumentCommand\zero{}{\boondoxbb{0}}
+
+        \ProvideDocumentCommand\opnorm{ m }
+        {
+            \left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert
+        }
+
+        \ProvideDocumentCommand\pauliX{}{{\sigma_X}}
+        \ProvideDocumentCommand\pauliY{}{{\sigma_Y}}
+        \ProvideDocumentCommand\pauliZ{}{{\sigma_Z}}
+
+        \ProvideDocumentCommand\str{ m }{\vb{#1}}
+
+    % Extend physics package
+        \DeclareDocumentCommand\setbraces{ o g }
+        {
+            \IfNoValueTF{#2}
+            {\IfNoValueTF{#1}{}{[#1]}}
+            {\IfNoValueTF{#1}{}{_{#1}} \argopen\lbrace#2\argclose\rbrace}
+        }
+        \DeclareDocumentCommand\setcbraces{ o m g }
+        {
+            \IfNoValueTF{#2}
+            {\IfNoValueTF{#1}{}{[#1]}}
+            {
+                \IfNoValueTF{#3}
+                {\IfNoValueTF{#1}{}{_{#1}} \argopen\lbrace#2\argclose\rbrace}
+                {\IfNoValueTF{#1}{}{_{#1}} \argopen\lbrace#2\middle\vert#3\argclose\rbrace}
+            }
+        }
+        \DeclareDocumentCommand\setcbrack{ m g }
+        {
+            \IfNoValueTF{#2}
+            {\argopen\lbrack#1\argclose\rbrack}
+            {\argopen\lbrack#1\middle\vert#2\argclose\rbrack}
+        }
+        \DeclareDocumentCommand\conddiv{ m m }
+        {
+            \argopen\lparen#1\middle\Vert#2\argclose\rparen
+        }
+
+    % Hack operators
+    \if\compatible0
+        \let\maximum\max
+            \DeclareDocumentCommand\max{}{\maximum\setbraces}
+        \let\minimum\min
+            \DeclareDocumentCommand\min{}{\minimum\setbraces}
+        \let\limit\lim
+            \DeclareDocumentCommand\lim{}{\limit\setbraces}
+        \let\superium\sup
+            \DeclareDocumentCommand\sup{}{\superium\setbraces}
+        \let\infinium\inf
+            \DeclareDocumentCommand\inf{}{\infinium\setbraces}
+    \fi
+
+    \DeclareDocumentCommand\ave{}{\average\setcbraces}
+    \DeclareDocumentCommand\prob{}{\probability\setcbrack}
+    \DeclareDocumentCommand\entro{}{\entropy\setcbrack}
+    \DeclareDocumentCommand\KLdiv{}{\KLdivergence\conddiv}
+
+% Pseudo-code
+\RequirePackage{algorithm}
+\RequirePackage[noend]{algpseudocode}
+
+% Quantum Circuit
+    \RequirePackage{tikz}
+    \RequirePackage{quantikz}
+    \usetikzlibrary{backgrounds,fit,decorations.pathreplacing,calc,matrix}
+
+% For marking
+\RequirePackage{soul,xcolor}
+% -------- Define Colors    --------
+    \ProvideDocumentCommand\red{}{\textcolor{red}}
+    \ProvideDocumentCommand\green{}{\textcolor{green}}
+    \ProvideDocumentCommand\blue{}{\textcolor{blue}}
+    \hypersetup{colorlinks=true, linkcolor=blue, citecolor=red, urlcolor=blue}
+
+% -------- Renew Symbols    --------
+% \renewcommand\qedsymbol{QED}
+
+% -------- Renew --------------
+% \RequirePackage{mathtools} % Override amsmath with mathtools
